@@ -43,13 +43,14 @@ export default function App() {
             } else if (route.name === "Safety") {
               iconPath = require("./img/nav-elem/safety.png");
             } else if (route.name === "Profile") {
-              iconPath = require("./img/nav-elem/profile.png");
+              iconPath = require("./img/david.png");
               return (
                 <Image
                   source={iconPath}
                   style={{
                     width: 24,
                     height: 24,
+                    borderRadius: 50,
                   }}
                 />
               );
@@ -69,7 +70,7 @@ export default function App() {
           header: () => (
             <CustomHeader
               title={route.name}
-              showSearch={route.name !== "Community" && route.name !== "Safety"} // Приховати search на Community і Safety
+              showSearch={route.name !== "Community" && route.name !== "Safety"} 
             />
           ),
           tabBarStyle: {
@@ -86,7 +87,7 @@ export default function App() {
           name="Profile"
           component={Profile}
           options={{
-            headerShown: false, // Приховуємо хедер для Profile
+            headerShown: false,
           }}
         />
       </Tab.Navigator>
