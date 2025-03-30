@@ -1,9 +1,14 @@
 import React from "react";
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import { View, Text, FlatList } from "react-native";
 import SortButtons from "../components/sortButtons";
 import PostCard from "../components/PostCard";
+import { useTheme } from "../contexts/ThemeContext";
+
+
 
 export default function CommunityScreen() {
+  const { theme } = useTheme();
+
   const buttons = ["🔍", "All", "ScreenShots", "Artwork", "Workland"];
   const posts = [
     {
@@ -27,11 +32,11 @@ export default function CommunityScreen() {
   ];
 
   return (
-    <View style={styles.commumityContainer}>
-      <View style={styles.contentContainer}>
+    <View style={theme.commumityContainer}>
+      <View style={theme.contentContainer}>
 
-      <View style={styles.descriptionContainer}>
-        <Text style={styles.descriptionText}>
+      <View style={theme.descriptionContainer}>
+        <Text style={theme.descriptionText}>
           Community and official content for all games and software
         </Text>
         <SortButtons buttons={buttons} />
@@ -48,26 +53,3 @@ export default function CommunityScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  commumityContainer: {
-    flex: 1,
-    backgroundColor: "#171A24",
-    width: "100%",
-  },
-  contentContainer: {
-    flex: 1,
-  },
-  descriptionContainer: {
-    backgroundColor: "#1C202C",
-    width: "100%",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    position: "relative",
-  },
-  descriptionText: {
-    fontSize: 14,
-    lineHeight: 18,
-    color: "#7B8D9D",
-    marginBottom: 15,
-  },
-});

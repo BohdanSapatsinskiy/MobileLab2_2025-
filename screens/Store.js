@@ -1,8 +1,11 @@
-import { View, Text, Image, FlatList, StyleSheet, SafeAreaView, ScrollView } from "react-native";
+import { View, Text, Image, FlatList, themeheet, SafeAreaView, ScrollView } from "react-native";
 import SortButtons from "../components/sortButtons";
 import SellCards from '../components/SellCards';
+import { useTheme } from "../contexts/ThemeContext";
+
 
 export default function Store() {
+  const { theme } = useTheme();
 
   const games = [
     {
@@ -73,24 +76,24 @@ export default function Store() {
   ];
 
   const renderProduct = ({ item }) => (
-    <View style={styles.block}>
-      <Image source={item.image} style={styles.blockPicture} />
+    <View style={theme.block}>
+      <Image source={item.image} style={theme.blockPicture} />
       <View style={{ paddingLeft: 10, alignItems: "flex-start" }}>
-        <Text style={styles.gameName}>{item.title}</Text>
-        <View style={styles.platformBlock}>
-          <Image source={require("../img/platform/windows.png")} style={styles.blockIcon} />
-          <Text style={styles.platformNameText}>{item.platform}</Text>
+        <Text style={theme.gameName}>{item.title}</Text>
+        <View style={theme.platformBlock}>
+          <Image source={require("../img/platform/windows.png")} style={theme.blockIcon} />
+          <Text style={theme.platformNameText}>{item.platform}</Text>
         </View>
       </View>
-      <View style={styles.gamePrice}>
-        <Text style={styles.gamePriceText}>{item.newPrice}</Text>
+      <View style={theme.gamePrice}>
+        <Text style={theme.gamePriceText}>{item.newPrice}</Text>
       </View>
     </View>
   );
 
   return (
-    <View style={styles.mainBlock}>
-      <View style={styles.content}>
+    <View style={theme.mainBlock}>
+      <View style={theme.content}>
 
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView ScrollView horizontal={true} style={{ padding: 10 }}>
@@ -114,50 +117,3 @@ export default function Store() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  mainBlock: {
-    flex: 1,
-    backgroundColor: "#1C202C",
-  },
-  content: {
-    marginTop: 20,
-    marginLeft: 20,
-    flex: 1,
-    marginRight: 10,
-  },
-  block: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 10,
-  },
-  blockPicture: {
-    borderRadius: 5,
-    width: 85,
-    height: 60,
-  },
-  blockIcon: {
-    width: 12.5,
-    height: 12.5,
-  },
-  gameName: {
-    fontSize: 16,
-    color: "white",
-  },
-  gamePrice: {
-    marginLeft: "auto",
-  },
-  gamePriceText: {
-    fontSize: 18,
-    color: "white",
-  },
-  platformBlock: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 5,
-  },
-  platformNameText: {
-    fontSize: 14,
-    color: "#7B8D9D",
-  },
-});

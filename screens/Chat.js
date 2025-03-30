@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
+import { View, Text, Image, ScrollView } from "react-native";
 import Tabs from "../components/tabsBlock";
+import { useTheme } from "../contexts/ThemeContext";
+
 
 export default function Chat() {
+  const { theme } = useTheme();
+
   const [activeTab, setActiveTab] = useState("chats");
   const tabs = [
     { id: "chats", label: "Open chats" },
@@ -19,18 +23,18 @@ export default function Chat() {
   ];
 
   return (
-    <View style={styles.screenContainer}>
-      <View style={styles.innerContainer}>
+    <View style={theme.screenContainer}>
+      <View style={theme.innerChatContainer}>
         <Tabs activeTab={activeTab} setActiveTab={setActiveTab} tabs={tabs} />
 
-        <ScrollView style={styles.chatListContainer}>
+        <ScrollView style={theme.chatListContainer}>
           {chats.map(chat => (
-            <View key={chat.id} style={styles.chatContainer}>
-              <View style={styles.chatDetailsContainer}>
-                <Image style={styles.chatAvatar} source={chat.avatar} />
+            <View key={chat.id} style={theme.chatContainer}>
+              <View style={theme.chatDetailsContainer}>
+                <Image style={theme.chatAvatar} source={chat.avatar} />
                 <View>
-                  <Text style={styles.userName}>{chat.userName}</Text>
-                  <Text style={styles.messageText}>{chat.message}</Text>
+                  <Text style={theme.userName}>{chat.userName}</Text>
+                  <Text style={theme.messageText}>{chat.message}</Text>
                 </View>
               </View>
               {chat.pointIcon && <Image source={chat.pointIcon} />}
@@ -42,43 +46,3 @@ export default function Chat() {
   );
 }
 
-const styles = StyleSheet.create({
-  screenContainer: {
-    flex: 1,
-    backgroundColor: "#1C202C",
-  },
-  innerContainer: {
-    marginTop: 20,
-    marginLeft: 20,
-    flex: 1,
-    marginRight: 10,
-  },
-  chatListContainer: {
-    marginTop: 20,
-  },
-  chatContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: 15,
-  },
-  chatDetailsContainer: {
-    gap: 15,
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  chatAvatar:{
-    width: 50,
-    height: 50,
-    borderRadius: 50,
-  },
-  userName: {
-    fontSize: 16,
-    fontWeight: "400",
-    color: "white",
-  },
-  messageText: {
-    fontSize: 14,
-    color: "#7B8D9D",
-  },
-});

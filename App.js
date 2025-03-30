@@ -7,6 +7,7 @@ import Community from "./screens/community";
 import Chat from "./screens/chat";
 import Safety from "./screens/safety";
 import Profile from "./screens/profile";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 const Tab = createBottomTabNavigator();
 
@@ -28,6 +29,7 @@ function CustomHeader({ title, showSearch }) {
 
 export default function App() {
   return (
+    <ThemeProvider>
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -92,6 +94,7 @@ export default function App() {
         />
       </Tab.Navigator>
     </NavigationContainer>
+    </ThemeProvider>
   );
 }
 

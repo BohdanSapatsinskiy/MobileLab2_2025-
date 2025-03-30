@@ -1,16 +1,19 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet,View } from 'react-native';
+import { TouchableOpacity, Text, View } from 'react-native';
+import { useTheme } from "../contexts/ThemeContext";
+
 
 const Tabs = ({ activeTab, setActiveTab, tabs }) => {
+  const { theme } = useTheme();
   return (
-    <View style={styles.buttonsContainer}>
+    <View style={theme.buttonsContainer}>
       {tabs.map((tab) => (
         <TouchableOpacity
           key={tab.id}
-          style={[styles.tab, activeTab === tab.id && styles.activeTab]}
+          style={[theme.tab, activeTab === tab.id && theme.activeTab]}
           onPress={() => setActiveTab(tab.id)}
         >
-          <Text style={[styles.text, activeTab === tab.id && styles.activeText]}>
+          <Text style={[theme.text, activeTab === tab.id && theme.activeText]}>
             {tab.label}
           </Text>
         </TouchableOpacity>
@@ -18,37 +21,5 @@ const Tabs = ({ activeTab, setActiveTab, tabs }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  buttonsContainer: {
-    flexDirection: 'row',
-    backgroundColor:"#303649",
-    justifyContent: 'center',
-    alignItems: 'center',
-    overflow:"hidden",
-    height:40,
-    borderRadius: 8,
-    padding:5,
-    marginLeft: 20,
-    marginRight: 20,
-  },
-  tab: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
-    height:36,
-  },
-  activeTab: {
-    backgroundColor: '#1C202C',
-  },
-  text: {
-    fontSize: 14,
-    color:"#7B8D9D",
-  },
-  activeText: {
-    color: 'white',
-  },
-});
 
 export default Tabs;
