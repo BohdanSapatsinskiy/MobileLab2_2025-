@@ -29,6 +29,8 @@ const styles = StyleSheet.create({
     height:40,
     borderRadius: 8,
     padding:5,
+    marginLeft: 20,
+    marginRight: 20,
   },
   tab: {
     flex: 1,
